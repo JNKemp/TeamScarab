@@ -92,8 +92,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
+
         private void FixedUpdate()
         {
+
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
@@ -200,36 +202,43 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Camera.transform.localPosition = newCameraPosition;
         }
 
-
+        public static bool isPlayerHolding = false;
         private void GetInput(out float speed)
         {
-            // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-            float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+            if (isPlayerHolding == false)
+            {
+                float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+                float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
-            bool waswalking = m_IsWalking;
+                bool waswalking = m_IsWalking;
 
 #if !MOBILE_INPUT
-            // On standalone builds, walk/run speed is modified by a key press.
-            // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+                // On standalone builds, walk/run speed is modified by a key press.
+                // keep track of whether or not the character is walking or running
+                m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
 #endif
-            // set the desired speed to be walking or running
-            speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
-            m_Input = new Vector2(horizontal, vertical);
+                // set the desired speed to be walking or running
+                speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+                m_Input = new Vector2(horizontal, vertical);
 
-            // normalize input if it exceeds 1 in combined length:
-            if (m_Input.sqrMagnitude > 1)
-            {
-                m_Input.Normalize();
+
+                // normalize input if it exceeds 1 in combined length:
+                if (m_Input.sqrMagnitude > 1)
+                {
+                    m_Input.Normalize();
+                }
+
+                // handle speed change to give an fov kick
+                // only if the player is going to a run, is running and the fovkick is to be used
+                if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
+                }
             }
-
-            // handle speed change to give an fov kick
-            // only if the player is going to a run, is running and the fovkick is to be used
-            if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+            else
             {
-                StopAllCoroutines();
-                StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
+                speed = 0;
             }
         }
 
