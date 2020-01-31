@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
+    [SerializeField]
+    private bool ChangeMaterial;
+
+    private Material mat_stored;
+    private Material mat_blank;
+    private bool bl_matChanged;
+    private float t = 0f;
+    private float fl_duration = 3f;
+
     private Renderer rend;
     private bool ConditionMet;
     
@@ -17,27 +26,40 @@ public class ColourChange : MonoBehaviour
     public enum colours
     {
         Blank,
+        //MAIN
         Red,
-        Orange,
         Yellow,
         Green,
         Blue,
-        Indigo,
-        
+        Purple,
+        Brown,
+        //OPTIONAL
+        Orange,
+        Pink,
+
+
     }
     public colours DesiredColour;
-    
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
         go_ColourManager = GameObject.Find("Colour Manager");
-
+        
+        
         rend = GetComponent<Renderer>(); //get the renderer from the gameobject
+        if (ChangeMaterial)
+        {
+            mat_stored = rend.material;
+            mat_blank = new Material(Shader.Find("Standard"));
+            mat_blank.color = Color.white;
+        }
+        Debug.Log(mat_stored);
         rend.material.color = Color.white; //turn it white 
         ConditionMet = false; //set the condition met to false
-        
+        bl_matChanged = false;
+
     }
 
     // Update is called once per frame
@@ -48,16 +70,34 @@ public class ColourChange : MonoBehaviour
             ConditionMet = true; //if the player has unlocked the desired colour, condition met becomes true
         }
 
-        //if the condition is met change the colour of the object to its desired colour
-        if (ConditionMet)
+        if (ChangeMaterial)
         {
-            StartCoroutine(ChangeColour());
+            if (ConditionMet)
+            {
+                rend.material = mat_stored; 
+            }
+            else
+            {
+                rend.material = mat_blank;
+            }
+        }
+        else
+        {
+            //if the condition is met change the colour of the object to its desired colour
+            if (ConditionMet)
+            {
+                StartCoroutine(ChangeColour());
 
+            }
+            else
+            {
+                rend.material.color = Color.white;
+            }
         }
-        else 
-        {
-            rend.material.color = Color.white;
-        }
+        
+
+        
+        
 
         
     }
@@ -92,7 +132,7 @@ public class ColourChange : MonoBehaviour
             {
                 rend.material.color = Color.blue;
             }
-            if (DesiredColour == colours.Indigo)
+            if (DesiredColour == colours.Purple)
             {
                 rend.material.color = new Color(0.6f, 0.25f, 0.85f, 1);
             }
@@ -104,6 +144,11 @@ public class ColourChange : MonoBehaviour
         yield break;
     }
 
+    IEnumerator ChangeMaterialOverTime()
+    {
+        
+        yield break;
+    }
 
     //Use this to make it change over time?
     //currentColour = rend.material.color;
