@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
-    [SerializeField]
-    private bool ChangeMaterial;
+    
 
-    private Material mat_stored;
+    private Texture tex_stored;
     private Material mat_blank;
-    private bool bl_matChanged;
-    private float t = 0f;
-    private float fl_duration = 3f;
+
+
+    private float BlendValue = 1;
+    private float BlendChange = 0.01f;
 
     private Renderer rend;
     private bool ConditionMet;
     
     private GameObject go_ColourManager;
-    [SerializeField]
-    private bool UseCustomColor;
 
-    [ColorUsage(true,true)]
-    public Color customColour;
 
+    //List of unlockable colours. Choose one of these in the IDE and once it has been unlocked in the Colour Manager, the object will change colour.
     public enum colours
     {
         Blank,
@@ -45,112 +42,49 @@ public class ColourChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        go_ColourManager = GameObject.Find("Colour Manager");
+        go_ColourManager = GameObject.Find("Colour Manager"); //Finds the Colour Manager in the scene
         
         
         rend = GetComponent<Renderer>(); //get the renderer from the gameobject
-        if (ChangeMaterial)
-        {
-            mat_stored = rend.material;
-            mat_blank = new Material(Shader.Find("Standard"));
-            mat_blank.color = Color.white;
-        }
-        Debug.Log(mat_stored);
-        rend.material.color = Color.white; //turn it white 
+        
+        tex_stored = rend.material.mainTexture; //Stores the texture of the object
+        mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
+        mat_blank.color = Color.white; //sets the material to white, so its all dull until the world is lit up
+        
         ConditionMet = false; //set the condition met to false
-        bl_matChanged = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (go_ColourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(DesiredColour.ToString()))
+        if (go_ColourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(DesiredColour.ToString())) //Checks the Colour Manager to see if the player has unlocked the needed colour
         {
             ConditionMet = true; //if the player has unlocked the desired colour, condition met becomes true
         }
-
-        if (ChangeMaterial)
+        else if (DesiredColour == colours.Blank)
         {
-            if (ConditionMet)
+            Debug.LogAssertion("You haven't picked a colour for this object so it will never be unlocked! this object will be grey forever :( You should set a colour.");
+        }
+
+        if (ConditionMet) //has the player unlocked the colour?
+        {
+            rend.material.mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
+            if (BlendValue <= 0) //if its below 0 STOP! otherwise it goes too far and the apple turns black or blue. not fun.
             {
-                rend.material = mat_stored; 
+                BlendValue = 0;
+                BlendChange = 0;
             }
             else
             {
-                rend.material = mat_blank;
+                BlendValue -= BlendChange; //gradually decrease the blend value until its 0
             }
-        }
-        else
-        {
-            //if the condition is met change the colour of the object to its desired colour
-            if (ConditionMet)
-            {
-                StartCoroutine(ChangeColour());
-
+                
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
             }
             else
             {
-                rend.material.color = Color.white;
+                rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
             }
-        }
-        
-
-        
-        
-
-        
     }
-
-
-    IEnumerator ChangeColour()
-    {
-        
-
-        if (!UseCustomColor)
-        {
-            
-
-            if (DesiredColour == colours.Red)
-            {
-                rend.material.color = Color.red;
-                yield return new WaitForSeconds(3f);
-            }
-            if (DesiredColour == colours.Orange)
-            {
-                rend.material.color = new Color(1, 0.8f, 0, 1);
-            }
-            if (DesiredColour == colours.Yellow)
-            {
-                rend.material.color = Color.yellow;
-            }
-            if (DesiredColour == colours.Green)
-            {
-                rend.material.color = Color.green;
-            }
-            if (DesiredColour == colours.Blue)
-            {
-                rend.material.color = Color.blue;
-            }
-            if (DesiredColour == colours.Purple)
-            {
-                rend.material.color = new Color(0.6f, 0.25f, 0.85f, 1);
-            }
-        }
-        else
-        {
-            rend.material.color = customColour;
-        }
-        yield break;
-    }
-
-    IEnumerator ChangeMaterialOverTime()
-    {
-        
-        yield break;
-    }
-
-    //Use this to make it change over time?
-    //currentColour = rend.material.color;
-    //rend.material.color = Color.Lerp(currentColour, Color.red, 3f);
 }

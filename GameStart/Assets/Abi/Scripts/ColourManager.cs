@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ColourManager : MonoBehaviour
 {
+    //this bad boy here is a list that holds all the colours the player has unlocked. wild. Colours are added through the ChangeColourOnTrigger script :)
     public List<string> str_unlockedColours;
     private GameObject go_WhiteFade;
     private Image im_white;
@@ -19,13 +20,13 @@ public class ColourManager : MonoBehaviour
     void Start()
     {
         go_WhiteFade = GameObject.Find("WhiteFade");
-        im_white = go_WhiteFade.GetComponent<Image>();
-        im_white.color = new Color(1, 1, 1, 0);
+
         bl_fadewhiteDone = true;
-        //str_unlockedColours.Add("Red");
-        str_unlockedColours.Add("Blue");
-        str_unlockedColours.Add("Orange");
+
     }
+
+
+    //You can ignore this stuff. It's for fading the screen to white. Just here for safe keeping in case we need it later. Which we probably will when we go through levels.
 
     // Update is called once per frame
     void Update()
