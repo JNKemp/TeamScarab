@@ -5,6 +5,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class JK_Pickup : MonoBehaviour
 {
+    private GameObject go_colourManager;
+
     private string RaycastObject;
     private GameObject Object;
 
@@ -20,7 +22,7 @@ public class JK_Pickup : MonoBehaviour
 
     private void Start()
     {
-
+        go_colourManager = GameObject.Find("Colour Manager"); //Finds the object called Colour Manager
     }
     void Update()
     {
@@ -73,6 +75,8 @@ public class JK_Pickup : MonoBehaviour
         {
             pickupPos = transform.position + transform.forward;
             Object.transform.position = pickupPos;
+            
+            go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Add(Object.GetComponent<PickupColour>().UnlockedColour.ToString());
         }
     }
 }
