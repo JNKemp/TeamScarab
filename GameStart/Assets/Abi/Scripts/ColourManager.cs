@@ -31,14 +31,14 @@ public class ColourManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!bl_fadewhiteDone)
-        {
-            StartCoroutine(FadeWhite());
-        }
-        if (bl_fadeback)
-        {
-            StartCoroutine(FadeBack());
-        }
+        //if (!bl_fadewhiteDone)
+        //{
+           // StartCoroutine(FadeWhite());
+        //}
+        //if (bl_fadeback)
+        //{
+            //StartCoroutine(FadeBack());
+        //}
             
     }
 
