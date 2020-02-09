@@ -18,6 +18,12 @@ public class ColourChange : MonoBehaviour
     
     private GameObject go_ColourManager;
 
+    [SerializeField]
+    private bool UnlockAudio;
+
+    private AudioSource as_object;
+    private bool bl_audioPlaying;
+
 
     //List of unlockable colours. Choose one of these in the IDE and once it has been unlocked in the Colour Manager, the object will change colour.
     public enum colours
@@ -38,7 +44,6 @@ public class ColourChange : MonoBehaviour
     }
     public colours DesiredColour;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +58,13 @@ public class ColourChange : MonoBehaviour
         
         ConditionMet = false; //set the condition met to false
 
+        if (UnlockAudio)
+        {
+            Debug.Assert(!as_object, "You have checked for this object to unlock audio but there is no Audio Source on this GameObject!");
+            as_object = GetComponent<AudioSource>(); //gets the audio source on the gameobject
+            as_object.playOnAwake = false; //makes it not play instantly in case it was accidently left checked
+            bl_audioPlaying = false; 
+        }
     }
 
     // Update is called once per frame
@@ -81,10 +93,17 @@ public class ColourChange : MonoBehaviour
             }
                 
             gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
-            }
-            else
+
+            if (UnlockAudio && !bl_audioPlaying) //check if the object should be playing audio and it isn't already
             {
-                rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+                bl_audioPlaying = true; //set a flag that the audio is playing so it doesnt play every frame
+                as_object.Play(); //play the audio
             }
+
+        }
+        else
+        {
+            rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+        }
     }
 }
