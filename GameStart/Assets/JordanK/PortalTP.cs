@@ -19,7 +19,7 @@ public class PortalTP : MonoBehaviour
             if (dotProduct < 0f)
             {
                 float rotationDifference = Quaternion.Angle(transform.rotation, reciever.rotation);
-                //rotationDifference += 180f;
+                rotationDifference += 180f;
                 player.transform.Rotate(Vector3.up, rotationDifference);
 
                 Vector3 positionOffset = Quaternion.Euler(0, rotationDifference, 0) * portalToPlayer;
