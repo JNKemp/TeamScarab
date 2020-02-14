@@ -20,6 +20,10 @@ public class ColourChange : MonoBehaviour
 
     [SerializeField]
     private bool UnlockAudio;
+    [SerializeField]
+    private bool IsWater;
+    private Animator an_water;
+
 
     private AudioSource as_object;
     private bool bl_audioPlaying;
@@ -52,9 +56,17 @@ public class ColourChange : MonoBehaviour
         
         rend = GetComponent<Renderer>(); //get the renderer from the gameobject
         
-        tex_stored = rend.material.mainTexture; //Stores the texture of the object
-        mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
-        mat_blank.color = Color.white; //sets the material to white, so its all dull until the world is lit up
+        if (IsWater)
+        {
+            an_water = GetComponent<Animator>();
+        }
+        else
+        {
+            tex_stored = rend.material.mainTexture; //Stores the texture of the object
+            mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
+            mat_blank.color = Color.white; //sets the material to white, so its all dull until the world is lit up
+        }
+        
         
         ConditionMet = false; //set the condition met to false
 
@@ -81,18 +93,27 @@ public class ColourChange : MonoBehaviour
 
         if (ConditionMet) //has the player unlocked the colour?
         {
-            rend.material.mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
-            if (BlendValue <= 0) //if its below 0 STOP! otherwise it goes too far and the apple turns black or blue. not fun.
+            if (IsWater)
             {
-                BlendValue = 0;
-                BlendChange = 0;
+                //rend.material = matWater;
+                an_water.SetBool("ConditionMet", true);
             }
             else
             {
-                BlendValue -= BlendChange; //gradually decrease the blend value until its 0
+                rend.material.mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
+                if (BlendValue <= 0) //if its below 0 STOP! otherwise it goes too far and the apple turns black or blue. not fun.
+                {
+                    BlendValue = 0;
+                    BlendChange = 0;
+                }
+                else
+                {
+                    BlendValue -= BlendChange; //gradually decrease the blend value until its 0
+                }
+
+                gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
             }
-                
-            gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
+            
 
             if (UnlockAudio && !bl_audioPlaying) //check if the object should be playing audio and it isn't already
             {
@@ -103,7 +124,11 @@ public class ColourChange : MonoBehaviour
         }
         else
         {
-            rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+            if (!IsWater)
+            {
+                rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+            }
+            
         }
     }
 }
