@@ -27,6 +27,7 @@ public class RS_JK_Raycast : MonoBehaviour
     private Animator surfaceanim;
     private GameObject Silhoutte;
     private Animator SilhoutteAnim;
+    private Animator DoorAnim;
 
     Color transparent = new Color(0f, 0f, 0f, 0f);
 
@@ -56,11 +57,17 @@ public class RS_JK_Raycast : MonoBehaviour
                     Object.GetComponent<BoxCollider>().enabled = false;
                 }
 
-                 if (Object.tag == "Person")
+                else if (Object.tag == "Person")
                 {
                     Debug.Log("Hit person with raycast");
                     SilhoutteAnim = Object.GetComponent<Animator>();
                     SilhoutteAnim.Play("Throw");
+                }
+                else if (Object.tag == "Door")
+                {
+                    DoorAnim = Object.GetComponent<Animator>();
+                    DoorAnim.Play("DoorSwing");
+                    Object.GetComponent<BoxCollider>().enabled = false;
                 }
                 else
                 {
