@@ -22,12 +22,15 @@ public class RS_JK_Raycast : MonoBehaviour
 
     //Ravina Stuff
     public GameObject joints;
-    private Animator jointsanim;
+    public Animator jointsanim;
     public GameObject surface;
-    private Animator surfaceanim;
+    public Animator surfaceanim;
     private GameObject Silhoutte;
-    private Animator SilhoutteAnim;
+    public Animator SilhoutteAnim;
     private Animator DoorAnim;
+    public Animator DoorAnim2;
+
+    private bool hasAnimPlayed = false;
 
     Color transparent = new Color(0f, 0f, 0f, 0f);
 
@@ -62,11 +65,14 @@ public class RS_JK_Raycast : MonoBehaviour
                     Debug.Log("Hit person with raycast");
                     SilhoutteAnim = Object.GetComponent<Animator>();
                     SilhoutteAnim.Play("Throw");
+                    hasAnimPlayed = true;
+
                 }
-                else if (Object.tag == "Door")
+                else if (Object.tag == "Door" )
                 {
                     DoorAnim = Object.GetComponent<Animator>();
-                    DoorAnim.Play("DoorSwing");
+                    DoorAnim.Play("DoorOpen");
+                    DoorAnim2.Play("DoorOpen");
                     Object.GetComponent<BoxCollider>().enabled = false;
                 }
                 else
@@ -84,6 +90,17 @@ public class RS_JK_Raycast : MonoBehaviour
         }
         //RotateHeldObject();
         MoveHeldObject();
+
+        if (SilhoutteAnim.GetCurrentAnimatorStateInfo(0).IsName("EndThrow") && hasAnimPlayed == true)
+        {
+            jointsanim.Play("FadeJoints");
+            surfaceanim.Play("SurfaceFade");
+            Debug.Log("Anim played");
+            hasAnimPlayed = false;
+        }
+        //if (surfaceanim.GetCurrentAnimatorStateInfo(0).IsName("SurfaceFade") || jointsanim.GetCurrentAnimatorStateInfo(0).IsName("FadeJoints")){
+        //    Debug.Log("Surface fade");
+        //}
     }
 
     void RotateHeldObject()
