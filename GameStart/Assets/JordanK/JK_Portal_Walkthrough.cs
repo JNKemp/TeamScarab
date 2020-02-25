@@ -9,15 +9,6 @@ public class JK_Portal_Walkthrough : MonoBehaviour
     public GameObject CameraPane;
     public GameObject CollisionPlane;
 
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
