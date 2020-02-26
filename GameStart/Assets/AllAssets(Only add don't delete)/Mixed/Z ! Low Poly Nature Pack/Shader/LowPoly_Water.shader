@@ -3,6 +3,8 @@ Shader "Zomoss/LowPoly_Water"
 	Properties
 	{
 		_WaterColor("Water Color", Color) = (1,1,1,0)
+		_GrayWaterColor("Gray Water Color", Color) = (1,1,1,0)
+		_Blend("Texture Blend", Range(0,1)) = 0.0
 		_WaterNormal("Water Normal", 2D) = "bump" {}
 		_WaterSmoothness("Water Smoothness", Range( 0 , 5)) = 2
 		_WaterSpeed("Water Speed", Range( 0 , 1)) = 0
@@ -54,12 +56,16 @@ Shader "Zomoss/LowPoly_Water"
 			float2 uv_Foam_Texture = i.uv_texcoord * _Foam_Texture_ST.xy + _Foam_Texture_ST.zw;
 			float2 panner116 = ( 1.0 * _Time.y * float2( -0.01,0.01 ) + uv_Foam_Texture);
 			float temp_output_114_0 = ( saturate( pow( ( temp_output_89_0 + _FoamDepth ) , -3 ) ) * tex2D( _Foam_Texture, panner116 ).r );
+
+			//float4 lerpResult69420 = lerp(_WaterColor, _GrayWaterColor, _Blend);
+
 			float4 lerpResult117 = lerp( lerpResult13 , half4(1,1,1,0) , temp_output_114_0);
 			o.Albedo = lerpResult117.rgb;
 			o.Specular = 0;
 			float lerpResult133 = lerp( _WaterSmoothness , 0 , temp_output_114_0);
 			o.Smoothness = ( lerpResult133 * 0.5 );
 			o.Alpha = _WaterOpacity;
+
 		}
 
 		ENDCG
