@@ -89,7 +89,7 @@ Material:
     - _UVSec: 0
     - _WaterDepth: 0.5
     - _WaterFalloff: 1
-    - _WaterOpacity: 0.9
+    - _WaterOpacity: 0.558
     - _WaterReflection: 0.5
     - _WaterScale: 0.199
     - _WaterSmoothness: 1.94
