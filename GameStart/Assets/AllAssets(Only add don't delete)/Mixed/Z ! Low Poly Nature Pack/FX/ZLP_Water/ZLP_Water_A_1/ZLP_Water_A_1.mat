@@ -89,12 +89,12 @@ Material:
     - _UVSec: 0
     - _WaterDepth: 0.5
     - _WaterFalloff: 1
-    - _WaterOpacity: 0.9
+    - _WaterOpacity: 1
     - _WaterReflection: 0.5
     - _WaterScale: 0.199
     - _WaterSmoothness: 1.94
     - _WaterSpecular: 0
-    - _WaterSpeed: 0.1
+    - _WaterSpeed: 0.2
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
