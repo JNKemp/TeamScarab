@@ -8,6 +8,11 @@ TagManager:
   - Pickup
   - Person
   - Door
+  - BlueDoor
+  - YellowDoor
+  - GreenDoor
+  - NewZone
+  - Return
   layers:
   - Default
   - TransparentFX

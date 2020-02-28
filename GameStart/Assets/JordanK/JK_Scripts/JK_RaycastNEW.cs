@@ -44,9 +44,16 @@ public class JK_RaycastNEW : MonoBehaviour
                 else if (Object.tag == "Person")
                 {
                     Object.SendMessage("fadeOut");
-
                 }
-                else if (Object.tag == "Door")
+                else if (Object.tag == "BlueDoor")
+                {
+                    Object.SendMessage("OpenDoor");
+                }
+                else if (Object.tag == "YellowDoor")
+                {
+                    Object.SendMessage("OpenDoor");
+                }
+                else if (Object.tag == "GreenDoor")
                 {
                     Object.SendMessage("OpenDoor");
                 }

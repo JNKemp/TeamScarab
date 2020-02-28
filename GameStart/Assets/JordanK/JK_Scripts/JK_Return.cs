@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JK_Portal_Walkthrough : MonoBehaviour
+public class JK_Return : MonoBehaviour
 {
     private Animator DoorAnim;
     public GameObject Door;
     public GameObject CameraPane;
     public GameObject CollisionPlane;
 
+    public GameObject ReturnCollider;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -17,6 +18,7 @@ public class JK_Portal_Walkthrough : MonoBehaviour
             DoorAnim.Play("DoorClose");
             CameraPane.SetActive(false);
             CollisionPlane.SetActive(false);
+            ReturnCollider.SetActive(false);
         }
     }
 }
