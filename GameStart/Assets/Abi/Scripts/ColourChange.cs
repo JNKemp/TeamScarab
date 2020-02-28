@@ -64,7 +64,7 @@ public class ColourChange : MonoBehaviour
         {
             tex_stored = rend.material.mainTexture; //Stores the texture of the object
             mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
-            mat_blank.color = Color.white; //sets the material to white, so its all dull until the world is lit up
+            mat_blank.color = Color.gray; //sets the material to white, so its all dull until the world is lit up
         }
         
         
