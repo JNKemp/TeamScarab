@@ -12,12 +12,18 @@ public class AnimalRun : MonoBehaviour
     [SerializeField]
     private GameObject go_controller;
     private Animator an_controller;
+
+    [SerializeField]
+    private float TimeTakenToCompleteAnimation;
+
+    private BoxCollider bx_collider;
     // Start is called before the first frame update
     void Start()
     {
         go_PC = GameObject.Find("FPSController");
         an_animal = go_animal.GetComponent<Animator>();
         an_controller = go_controller.GetComponent<Animator>();
+        bx_collider = gameObject.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -32,6 +38,15 @@ public class AnimalRun : MonoBehaviour
         {
             an_animal.SetBool("isRunning", true);
             an_controller.SetBool("isTriggered", true);
+            StartCoroutine("ReturnToIdle");
+            Destroy(bx_collider);
         }
+    }
+
+    IEnumerator ReturnToIdle()
+    {
+        yield return new WaitForSeconds(TimeTakenToCompleteAnimation);
+        an_animal.SetBool("isRunning", false);
+        an_animal.SetBool("isIdle", true);
     }
 }
