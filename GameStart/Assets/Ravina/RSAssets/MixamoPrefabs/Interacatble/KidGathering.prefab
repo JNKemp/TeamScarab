@@ -2243,6 +2243,7 @@ GameObject:
   - component: {fileID: 2038578743455397190}
   - component: {fileID: 2038578743455397188}
   - component: {fileID: 2038578743455397191}
+  - component: {fileID: -6142688627779207972}
   m_Layer: 0
   m_Name: KidGathering
   m_TagString: Untagged
@@ -2411,6 +2412,22 @@ MonoBehaviour:
   joints: {fileID: 4928068844659194978}
   surface: {fileID: 991965942605226077}
   particlesystem: {fileID: 2038578743423366738}
+--- !u!114 &-6142688627779207972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028670769560276714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239251bb61c171d41abfe7d478cf223b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joints: {fileID: 0}
+  surface: {fileID: 0}
+  particlesystem: {fileID: 0}
+  LineDelay: 0
 --- !u!1 &8131798515757507354
 GameObject:
   m_ObjectHideFlags: 0

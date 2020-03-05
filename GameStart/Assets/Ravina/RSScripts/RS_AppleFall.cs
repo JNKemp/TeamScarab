@@ -7,13 +7,13 @@ public class RS_AppleFall : MonoBehaviour
 
     
 {
-    private GameObject player;
+    public GameObject player;
     public GameObject Apple;
     private Rigidbody appleRigid;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         appleRigid = Apple.GetComponent<Rigidbody>();
     }
 

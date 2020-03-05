@@ -49,7 +49,7 @@ public class ChangeColourOnTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogAssertion("You need to assign a colour to unlock! It is currently set as Blank! That's not what you want! There's a dropdown list of all colours on the object this script is on. :)");
+            //Debug.LogAssertion("You need to assign a colour to unlock! It is currently set as Blank! That's not what you want! There's a dropdown list of all colours on the object this script is on. :)");
         }
 
             if (DestroyObjectAfter)

@@ -9,6 +9,7 @@ public class RS_EaselPaint : MonoBehaviour
     public GameObject Part2;
     public GameObject Part3;
     public GameObject PartCompl;
+    public GameObject Text;
 
     private Animator an_easel;
 
@@ -21,6 +22,7 @@ public class RS_EaselPaint : MonoBehaviour
         Part2.SetActive(false);
         Part3.SetActive(false);
         PartCompl.SetActive(false);
+        Text.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,5 +42,10 @@ public class RS_EaselPaint : MonoBehaviour
             //PartCompl.SetActive(true);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Text.SetActive(true);
     }
 }

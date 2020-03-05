@@ -818,6 +818,7 @@ GameObject:
   - component: {fileID: 5457281071962323929}
   - component: {fileID: 5457281071962323930}
   - component: {fileID: 5457281071962323926}
+  - component: {fileID: 4949758598577446570}
   m_Layer: 0
   m_Name: GoalKeeperKid 1
   m_TagString: Person
@@ -1002,6 +1003,22 @@ MonoBehaviour:
   joints: {fileID: 1410277771889651231}
   surface: {fileID: 6499397316914262560}
   particlesystem: {fileID: 5457281072422448602}
+--- !u!114 &4949758598577446570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079633641926024343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239251bb61c171d41abfe7d478cf223b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joints: {fileID: 0}
+  surface: {fileID: 0}
+  particlesystem: {fileID: 0}
+  LineDelay: 0
 --- !u!1 &4081514608767199474
 GameObject:
   m_ObjectHideFlags: 0

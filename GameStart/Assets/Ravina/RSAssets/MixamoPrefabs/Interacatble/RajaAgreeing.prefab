@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 5908817526752611272}
   - component: {fileID: 2975664753360553268}
   - component: {fileID: 7182234677180884500}
-  - component: {fileID: 3935855991198258857}
+  - component: {fileID: -978167131721083802}
   m_Layer: 0
   m_Name: RajaAgreeing
   m_TagString: Untagged
@@ -411,7 +411,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3935855991198258857
+--- !u!114 &-978167131721083802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,12 +420,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 779417553854485665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dabc86a1ff51294382957a8f5e73b29, type: 3}
+  m_Script: {fileID: 11500000, guid: 239251bb61c171d41abfe7d478cf223b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joints: {fileID: 409167230285359929}
-  surface: {fileID: 7908916774516595898}
+  joints: {fileID: 0}
+  surface: {fileID: 0}
   particlesystem: {fileID: 0}
+  LineDelay: 0
 --- !u!1 &786083629643751620
 GameObject:
   m_ObjectHideFlags: 0

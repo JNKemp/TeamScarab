@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 370919389035938961}
   - component: {fileID: 7759639458850171371}
   - component: {fileID: 2308141481236104507}
-  - component: {fileID: 7918953856670031082}
+  - component: {fileID: 397978490227735795}
   m_Layer: 0
   m_Name: RajaLooking
   m_TagString: Untagged
@@ -904,7 +904,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7251837, y: 2.0000343, z: 2.689852}
   m_Center: {x: -0.40112817, y: 0.88547325, z: 0.15315306}
---- !u!114 &7918953856670031082
+--- !u!114 &397978490227735795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -913,12 +913,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3710575633053267586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dabc86a1ff51294382957a8f5e73b29, type: 3}
+  m_Script: {fileID: 11500000, guid: 239251bb61c171d41abfe7d478cf223b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joints: {fileID: 1761199817506898954}
-  surface: {fileID: 5895535868326369333}
+  joints: {fileID: 0}
+  surface: {fileID: 0}
   particlesystem: {fileID: 0}
+  LineDelay: 0
 --- !u!1 &3761396567376969433
 GameObject:
   m_ObjectHideFlags: 0

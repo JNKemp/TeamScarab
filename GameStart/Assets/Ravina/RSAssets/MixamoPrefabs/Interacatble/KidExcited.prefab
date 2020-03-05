@@ -2210,6 +2210,7 @@ GameObject:
   - component: {fileID: 8627635379030183838}
   - component: {fileID: 2761630116545412750}
   - component: {fileID: 4215622992630058295}
+  - component: {fileID: -2418848979953527832}
   m_Layer: 0
   m_Name: KidExcited
   m_TagString: Untagged
@@ -2378,6 +2379,22 @@ MonoBehaviour:
   joints: {fileID: 6933393174767591303}
   surface: {fileID: 601202861538338820}
   particlesystem: {fileID: 8744777159324171511}
+--- !u!114 &-2418848979953527832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017804905084559391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239251bb61c171d41abfe7d478cf223b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joints: {fileID: 0}
+  surface: {fileID: 0}
+  particlesystem: {fileID: 0}
+  LineDelay: 0
 --- !u!1 &8033649686745846906
 GameObject:
   m_ObjectHideFlags: 0
