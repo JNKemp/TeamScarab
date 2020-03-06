@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1784694667041998037}
   - component: {fileID: 6352624477444173664}
   - component: {fileID: 5567635652331291971}
+  - component: {fileID: 1136890484039503013}
   m_Layer: 0
   m_Name: Tree1
   m_TagString: Untagged
@@ -114,6 +115,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -88618232834695758, guid: 089e2abd685753b48a674757944f8fc7, type: 3}
+--- !u!114 &1136890484039503013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69898517065281545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bfe3e1f90eb2648967b822c9ede3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnlockAudio: 0
+  IsWater: 0
+  DesiredColour: 6
 --- !u!1 &2496186999823731141
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +141,7 @@ GameObject:
   - component: {fileID: 3320755250177594772}
   - component: {fileID: 1680833765177779626}
   - component: {fileID: 4989579999677273069}
+  - component: {fileID: 167466869593414931}
   m_Layer: 0
   m_Name: Crown
   m_TagString: Untagged
@@ -192,3 +209,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &167466869593414931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496186999823731141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bfe3e1f90eb2648967b822c9ede3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnlockAudio: 0
+  IsWater: 0
+  DesiredColour: 3
