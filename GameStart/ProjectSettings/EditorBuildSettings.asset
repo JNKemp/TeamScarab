@@ -4,14 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Ravina/RS_Scenes/MenuScreen.unity
-    guid: 9503a809d45784049b8e5c64a7a8689f
-  - enabled: 1
-    path: Assets/Ravina/RS_Scenes/ForestEdited.unity
-    guid: 2d895077ee77e7f4fb21c966e316b789
-  - enabled: 1
-    path: Assets/Ravina/RS_Scenes/SettingsScreen.unity
-    guid: 5a576fa2642159746ad7a3e4b5b0df6f
+  m_Scenes: []
   m_configObjects: {}
