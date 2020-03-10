@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VoicelinePlayer : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class VoicelinePlayer : MonoBehaviour
 
     private GameObject SubtitlePanel;
     public string[] Subtitles;
-    private Text currentSubtitles;
+    private TextMeshProUGUI currentSubtitles;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class VoicelinePlayer : MonoBehaviour
         int_voicelineNumber = 0;
         SubtitlePanel = GameObject.Find("SubtitlePanel");
         SubtitlePanel.SetActive(false);
-        currentSubtitles = SubtitlePanel.GetComponentInChildren<Text>();
+        currentSubtitles = SubtitlePanel.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
