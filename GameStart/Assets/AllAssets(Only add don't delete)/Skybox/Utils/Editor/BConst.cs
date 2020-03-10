@@ -108,7 +108,7 @@ namespace Boxophobic
                 }
                 else
                 {
-                    color = Color.black;
+                    color = new Color(0.27f, 0.27f, 0.27f);
                 }
 
                 return color;

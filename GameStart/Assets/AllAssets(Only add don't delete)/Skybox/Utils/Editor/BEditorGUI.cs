@@ -41,9 +41,11 @@ namespace Boxophobic
             GUI.DrawTexture(bannerBeginRect, BConst.BannerImageBegin, ScaleMode.StretchToFill, true);
             GUI.DrawTexture(bannerMiddleRect, BConst.BannerImageMiddle, ScaleMode.StretchToFill, true);
             GUI.DrawTexture(bannerEndRect, BConst.BannerImageEnd, ScaleMode.StretchToFill, true);
-
+#if UNITY_2019_3_OR_NEWER
+            GUI.Label(bannerFullRect, "<size=14><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + ">" + bannerText + "</color></size>", BConst.BannerTitleStyle);
+#else
             GUI.Label(bannerFullRect, "<size=14><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + "><b>" + bannerText + "</b></color></size>", BConst.BannerTitleStyle);
-
+#endif
             GUI.color = guiColor;
 
             if (GUI.Button(iconRect, BConst.IconHelp, new GUIStyle { alignment = TextAnchor.MiddleCenter }))
@@ -92,8 +94,11 @@ namespace Boxophobic
 
             GUI.color = guiColor;
 
+#if UNITY_2019_3_OR_NEWER
+            GUI.Label(bannerFullRect, "<size=16><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + ">" + bannerText + "</color></size>", BConst.BannerTitleStyle);
+#else
             GUI.Label(bannerFullRect, "<size=14><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + "><b>" + bannerText + "</b></color></size>", BConst.BannerTitleStyle);
-
+#endif
             if (GUI.Button(iconRect, BConst.IconHelp, new GUIStyle { alignment = TextAnchor.MiddleCenter }))
             {
                 Application.OpenURL(helpURL);
@@ -139,8 +144,11 @@ namespace Boxophobic
             GUI.DrawTexture(bannerEndRect, BConst.BannerImageEnd, ScaleMode.StretchToFill, true);
 
             GUI.color = guiColor;
-
+#if UNITY_2019_3_OR_NEWER
+            GUI.Label(bannerFullRect, "<size=16><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + ">" + bannerText + " " + bannerSubText + "</color></size>", BConst.BannerTitleStyle);
+#else
             GUI.Label(bannerFullRect, "<size=14><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + "><b>" + bannerText + "</b> " + bannerSubText + "</color></size>", BConst.BannerTitleStyle);
+#endif
 
 #if AMPLIFY_SHADER_EDITOR
             if (GUI.Button(iconRect, BConst.IconEdit, new GUIStyle { alignment = TextAnchor.MiddleCenter }))
@@ -195,8 +203,8 @@ namespace Boxophobic
             var position = GUILayoutUtility.GetRect(0, 0, 40, 0);
             var categoryFullRect = new Rect(position.position.x, position.position.y + 10, position.width, position.height);
             var categoryBeginRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, 10, 20);
-            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 33, 20);
-            var categoryEndRect = new Rect(categoryFullRect.xMax - 6, categoryFullRect.position.y, 10, 20);
+            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 41, 20);
+            var categoryEndRect = new Rect(categoryFullRect.xMax - 13, categoryFullRect.position.y, 10, 20);
             var titleRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, categoryFullRect.width, 18);
 
             GUI.color = BConst.ColorStandardDim;
