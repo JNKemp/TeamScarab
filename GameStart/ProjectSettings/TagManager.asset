@@ -7,8 +7,6 @@ TagManager:
   - Fire
   - Pickup
   - Person
-  - Door
-  - BlueDoor
   layers:
   - Default
   - TransparentFX

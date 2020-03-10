@@ -83,7 +83,7 @@ public class GM : MonoBehaviour
         switch (vState)
         {
             case GameStates.Pause:
-                PausePanel = GameObject.Find("Pause Panel");
+
                 PausePanel.SetActive(false);
 
                 break;
