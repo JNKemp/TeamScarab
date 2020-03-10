@@ -36,7 +36,9 @@ public class VoicelinePlayer : MonoBehaviour
                 {
                     int_voicelineNumber = 0;
                     voicelines = new AudioClip[0];
+                    Subtitles = new string[0];
                     SubtitlePanel.SetActive(false);
+                    currentSubtitles.text = "";
                 }
                 else
                 {
