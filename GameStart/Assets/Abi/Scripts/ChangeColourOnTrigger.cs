@@ -38,19 +38,21 @@ public class ChangeColourOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ColourToUnlock != colours.Blank)
+        if (other.tag == "Player")
         {
-            go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Add(str_colourtounlock); //Adds the chosen colour to the list of unlocked colours in the Colour Manager.
+            if (ColourToUnlock != colours.Blank)
+            {
+                go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Add(str_colourtounlock); //Adds the chosen colour to the list of unlocked colours in the Colour Manager.
+            }
+            else
+            {
+                Debug.LogAssertion("You need to assign a colour to unlock! It is currently set as Blank! That's not what you want! There's a dropdown list of all colours on the object this script is on. :)");
+            }
+
+            if (DestroyObjectAfter)
+            {
+                Destroy(gameObject); //Destroys the gameobject if it has been set to
+            }
         }
-        else
-        {
-            Debug.LogAssertion("You need to assign a colour to unlock! It is currently set as Blank! That's not what you want! There's a dropdown list of all colours on the object this script is on. :)");
-        }
-        
-        if (DestroyObjectAfter)
-        {
-            Destroy(gameObject); //Destroys the gameobject if it has been set to
-        }
-        
     }
 }

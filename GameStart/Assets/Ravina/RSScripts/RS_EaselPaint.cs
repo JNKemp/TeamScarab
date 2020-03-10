@@ -9,6 +9,10 @@ public class RS_EaselPaint : MonoBehaviour
     public GameObject Part2;
     public GameObject Part3;
     public GameObject PartCompl;
+    public GameObject Text;
+
+    public GameObject ExitDoor;
+    public GameObject ReturnZone;
 
     private Animator an_easel;
 
@@ -21,6 +25,9 @@ public class RS_EaselPaint : MonoBehaviour
         Part2.SetActive(false);
         Part3.SetActive(false);
         PartCompl.SetActive(false);
+        Text.SetActive(false);
+
+        ReturnZone.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,11 +41,18 @@ public class RS_EaselPaint : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.P))
         {
             an_easel.SetBool("bl_paint", true);
+            ExitDoor.transform.position = new Vector3(134.25f, 51.16f, 213.9f);
+            ReturnZone.SetActive(true);
             //Part1.SetActive(true);
             //Part2.SetActive(true);
             //Part3.SetActive(true);
             //PartCompl.SetActive(true);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Text.SetActive(true);
     }
 }
