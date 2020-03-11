@@ -10,7 +10,7 @@ public class JK_RS_SilhouetteFade : MonoBehaviour
     public GameObject surface;
     private Animator surfaceanim;
 
-    private AudioSource VoiceLine;
+    //private AudioSource VoiceLine;
 
     private Animator SilhoutteAnim;
 
@@ -32,7 +32,7 @@ public class JK_RS_SilhouetteFade : MonoBehaviour
         }
 
         //person = this.gameObject;
-        VoiceLine = GetComponent<AudioSource>();
+        //VoiceLine = GetComponent<AudioSource>();
         jointsanim = joints.GetComponent<Animator>();
         surfaceanim = surface.GetComponent<Animator>();
         SilhoutteAnim = GetComponent<Animator>();
@@ -67,7 +67,7 @@ public class JK_RS_SilhouetteFade : MonoBehaviour
             surfaceanim.Play("SurfaceFadeIn");
             particlesystem.SetActive(false);
 
-            VoiceLine.Play();
+            //VoiceLine.Play();
             hasAnimPlayed = true;
         }
     }
