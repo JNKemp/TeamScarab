@@ -28,6 +28,8 @@ public class RS_EaselPaint : MonoBehaviour
         Text.SetActive(false);
 
         ReturnZone.SetActive(false);
+
+        ExitDoor.GetComponent<BoxCollider>().enabled = false;
     }
 
     // Update is called once per frame
@@ -38,10 +40,11 @@ public class RS_EaselPaint : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown (KeyCode.P))
+        if (Input.GetKeyDown (KeyCode.E))
         {
             an_easel.SetBool("bl_paint", true);
             ExitDoor.transform.position = new Vector3(134.25f, 51.16f, 213.9f);
+            ExitDoor.GetComponent<BoxCollider>().enabled = true;
             ReturnZone.SetActive(true);
             //Part1.SetActive(true);
             //Part2.SetActive(true);
@@ -49,10 +52,5 @@ public class RS_EaselPaint : MonoBehaviour
             //PartCompl.SetActive(true);
         }
         
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Text.SetActive(true);
     }
 }
