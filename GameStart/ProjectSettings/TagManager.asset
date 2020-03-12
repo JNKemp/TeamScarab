@@ -8,6 +8,9 @@ TagManager:
   - Pickup
   - Person
   - Jelly
+  - BlueDoor
+  - Door
+  - Interactable
   layers:
   - Default
   - TransparentFX
