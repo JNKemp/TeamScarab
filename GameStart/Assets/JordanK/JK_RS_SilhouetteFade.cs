@@ -67,7 +67,7 @@ public class JK_RS_SilhouetteFade : MonoBehaviour
             surfaceanim.Play("SurfaceFadeIn");
             particlesystem.SetActive(false);
 
-            VoiceLine.Play();
+            //VoiceLine.Play();
             hasAnimPlayed = true;
         }
     }
