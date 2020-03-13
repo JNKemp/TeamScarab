@@ -27,7 +27,7 @@ public class JK_RadiusFPS : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Interactable" || other.tag == "Pickup")
+        if (other.tag == "Interactable" || other.tag == "Pickup" || other.tag == "ReInteractable")
         {
             PlayerInRange = true;
             InteractionPrompt.SetActive(true);
@@ -37,7 +37,7 @@ public class JK_RadiusFPS : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Interactable" || other.tag == "Pickup")
+        if(other.tag == "Interactable" || other.tag == "Pickup" || other.tag == "ReInteractable")
         {
             PlayerInRange = false;
             InteractionPrompt.SetActive(false);
@@ -61,11 +61,16 @@ public class JK_RadiusFPS : MonoBehaviour
                     oldPos = InteractionObject.transform.position;
                     InteractionObject.GetComponent<Rigidbody>().isKinematic = true;
                     InteractionObject.GetComponent<BoxCollider>().enabled = false;
+                    go_colourmanager.GetComponent<ColourManager>().str_unlockedColours.Add(InteractionObject.GetComponent<PickupColour>().UnlockedColour.ToString());
+                }
+                else if (InteractionObject.tag == "Interactable")
+                {
+                    InteractionObject.SendMessage("Interact");
+                    InteractionObject = null;
                 }
                 else
                 {
                     InteractionObject.SendMessage("Interact");
-                    InteractionObject = null;
                 }
             }
             else if (isPlayerHolding == true)
@@ -84,7 +89,6 @@ public class JK_RadiusFPS : MonoBehaviour
         {
             pickupPos = transform.position + transform.forward;
             InteractionObject.transform.position = pickupPos;
-            go_colourmanager.GetComponent<ColourManager>().str_unlockedColours.Add(InteractionObject.GetComponent<PickupColour>().UnlockedColour.ToString());
         }
     }
 }

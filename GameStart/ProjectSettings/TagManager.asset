@@ -11,6 +11,7 @@ TagManager:
   - BlueDoor
   - Door
   - Interactable
+  - ReInteractable
   layers:
   - Default
   - TransparentFX

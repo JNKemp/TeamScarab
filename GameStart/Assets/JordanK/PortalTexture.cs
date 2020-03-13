@@ -9,6 +9,8 @@ public class PortalTexture : MonoBehaviour
     public Material cameraMatB;
     public Material cameraMatA;
 
+    public static string ActiveDoor;
+
     void Start()
     {
         if (cameraB.targetTexture != null)

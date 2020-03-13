@@ -18,6 +18,7 @@ public class JK_Portal_Walkthrough : MonoBehaviour
             CameraPane.SetActive(false);
             CollisionPlane.SetActive(false);
             gameObject.SetActive(false);
+            JK_DoorOpen.isDoorOpen = false;
         }
     }
 }
