@@ -21,6 +21,18 @@ public class SkyboxManager : MonoBehaviour
 
     private GameObject go_ColourManager;
 
+    [ColorUsageAttribute(true, true)]
+    [SerializeField]
+    private Color fogForest;
+
+    [ColorUsageAttribute(true, true)]
+    [SerializeField]
+    private Color fogBeach;
+
+    [ColorUsageAttribute(true, true)]
+    [SerializeField]
+    private Color fogAquarium;
+
     //List of locations the player can be to determine what skybox should be shown
     public enum location
     {
@@ -29,9 +41,11 @@ public class SkyboxManager : MonoBehaviour
         Beach,
         Aquarium,
     }
-    //[HideInInspector]
+    [HideInInspector]
     public location player_location;
-    public enum colours_forest
+    [HideInInspector]
+    public int in_currentLevel;
+    public enum colours
     {
         Blank,
         //MAIN
@@ -45,45 +59,19 @@ public class SkyboxManager : MonoBehaviour
         Orange,
         Pink,
     }
-    public colours_forest ForestSkyboxColour;
+    public colours ForestSkyboxColour;
 
-    public enum colours_beach
-    {
-        Blank,
-        //MAIN
-        Red,
-        Yellow,
-        Green,
-        Blue,
-        Purple,
-        Brown,
-        //OPTIONAL
-        Orange,
-        Pink,
-    }
-    public colours_beach BeachSkyboxColour;
+    
+    public colours BeachSkyboxColour;
 
-    public enum colours_aqua
-    {
-        Blank,
-        //MAIN
-        Red,
-        Yellow,
-        Green,
-        Blue,
-        Purple,
-        Brown,
-        //OPTIONAL
-        Orange,
-        Pink,
-    }
-    public colours_aqua AquariumSkyboxColour;
+   
+    public colours AquariumSkyboxColour;
 
     // Start is called before the first frame update
     void Start()
     {
         go_ColourManager = GameObject.Find("Colour Manager"); //Finds the Colour Manager in the scene
-
+        RenderSettings.fog = true;
     }
 
     // Update is called once per frame
@@ -95,6 +83,7 @@ public class SkyboxManager : MonoBehaviour
             if (go_ColourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(ForestSkyboxColour.ToString())) //Checks the Colour Manager to see if the player has unlocked the needed colour
             {
                 RenderSettings.skybox = colour_SB_Forest;
+                RenderSettings.fogColor = fogForest;
             }
             else
             {
@@ -107,6 +96,7 @@ public class SkyboxManager : MonoBehaviour
             if (go_ColourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(BeachSkyboxColour.ToString())) //Checks the Colour Manager to see if the player has unlocked the needed colour
             {
                 RenderSettings.skybox = colour_SB_Beach;
+                RenderSettings.fogColor = fogBeach;
             }
             else
             {
@@ -119,11 +109,25 @@ public class SkyboxManager : MonoBehaviour
             if (go_ColourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(AquariumSkyboxColour.ToString())) //Checks the Colour Manager to see if the player has unlocked the needed colour
             {
                 RenderSettings.skybox = colour_SB_Aqua;
+                RenderSettings.fogColor = fogAquarium;
             }
             else
             {
                 RenderSettings.skybox = gray_SB_Aqua;
             }
+        }
+
+        if (in_currentLevel == 1)
+        {
+            player_location = location.Forest;
+        }
+        if (in_currentLevel == 2)
+        {
+            player_location = location.Beach;
+        }
+        if (in_currentLevel == 3)
+        {
+            player_location = location.Aquarium;
         }
     }
 }
