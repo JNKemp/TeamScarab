@@ -17,6 +17,50 @@ public class RS_EaselPaint : MonoBehaviour
 
     private Animator an_easel;
 
+    public GameObject CollectText;
+    private float Delay;
+    private bool TextActive;
+
+    public enum colours
+    {
+        Blank,
+        //MAIN
+        Red,
+        Yellow,
+        Green,
+        Blue,
+        Purple,
+        Brown,
+        //OPTIONAL
+        Orange,
+        Pink,
+
+
+    }
+    public colours Colour1;
+    public colours Colour2;
+
+    private GameObject go_colourManager;
+
+
+    // Start is called before the first frame update
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(Colour1.ToString()) && go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(Colour2.ToString()))
+        {
+            if (ExitDoor)
+            {
+                ExitDoor.SetActive(true);
+            }
+        }
+        if (Time.time >= Delay && TextActive == true)
+        {
+            CollectText.SetActive(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +73,25 @@ public class RS_EaselPaint : MonoBehaviour
 
         ReturnZone.SetActive(false);
         ExitDoor.GetComponent<BoxCollider>().enabled = false;
+
+        ExitDoor.SetActive(false);
+        CollectText.SetActive(false);
+        go_colourManager = GameObject.Find("Colour Manager");
     }
 
     void Interact()
     {
-        an_easel.SetBool("bl_paint", true);
-        ExitDoor.transform.position = ReturnPos;
-        ExitDoor.GetComponent<BoxCollider>().enabled = true;
-        ReturnZone.SetActive(true);
+        if (go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(Colour1.ToString()) && go_colourManager.GetComponent<ColourManager>().str_unlockedColours.Contains(Colour2.ToString()))
+        {
+            an_easel.SetBool("bl_paint", true);
+            ExitDoor.transform.position = ReturnPos;
+            ExitDoor.GetComponent<BoxCollider>().enabled = true;
+            ReturnZone.SetActive(true);
+        } else
+        {
+            CollectText.SetActive(true);
+            TextActive = true;
+            Delay = Time.time + 5f;
+        }
     }
 }
