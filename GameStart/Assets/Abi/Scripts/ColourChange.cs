@@ -7,13 +7,17 @@ public class ColourChange : MonoBehaviour
     
 
     private Texture tex_stored;
+    private Texture tex_stored2;
+
     private Material mat_blank;
+    private Material[] mats_blank;
 
 
     private float BlendValue = 1;
     private float BlendChange = 0.01f;
 
     private Renderer rend;
+    [SerializeField]
     private bool ConditionMet;
     
     private GameObject go_ColourManager;
@@ -27,6 +31,9 @@ public class ColourChange : MonoBehaviour
 
     private AudioSource as_object;
     private bool bl_audioPlaying;
+
+    [SerializeField]
+    private bool UseSecondaryMaterial;
 
 
     //List of unlockable colours. Choose one of these in the IDE and once it has been unlocked in the Colour Manager, the object will change colour.
@@ -60,9 +67,22 @@ public class ColourChange : MonoBehaviour
         {
             an_water = GetComponent<Animator>();
         }
+        else if (UseSecondaryMaterial)
+        {
+            tex_stored = rend.materials[1].mainTexture;
+            tex_stored2 = rend.materials[0].mainTexture;
+            mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
+            mat_blank.color = Color.gray; //sets the material to white, so its all dull until the world is lit up
+            mats_blank = new Material[rend.materials.Length];
+            for (int i=0; i<mats_blank.Length;i++)
+            {
+                mats_blank[i] = mat_blank;
+            }
+        }
         else
         {
             tex_stored = rend.material.mainTexture; //Stores the texture of the object
+            
             mat_blank = new Material(Shader.Find("Custom/Texture Blend")); //Sets the shader to a custom shader that allows the material to fade between two textures
             mat_blank.color = Color.gray; //sets the material to white, so its all dull until the world is lit up
         }
@@ -100,7 +120,17 @@ public class ColourChange : MonoBehaviour
             }
             else
             {
-                rend.material.mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
+                if (UseSecondaryMaterial)
+                {
+                    rend.materials[0].mainTexture = tex_stored2; //set the texture we are fading to back to what it originally was
+                    rend.materials[1].mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
+
+                }
+                else
+                {
+                    rend.material.mainTexture = tex_stored; //set the texture we are fading to back to what it originally was
+                }
+                
                 if (BlendValue <= 0) //if its below 0 STOP! otherwise it goes too far and the apple turns black or blue. not fun.
                 {
                     BlendValue = 0;
@@ -111,7 +141,15 @@ public class ColourChange : MonoBehaviour
                     BlendValue -= BlendChange; //gradually decrease the blend value until its 0
                 }
 
-                gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
+                if (UseSecondaryMaterial)
+                {
+                    gameObject.GetComponent<Renderer>().materials[0].SetFloat("_Blend", BlendValue); //actually set the blend value
+                    gameObject.GetComponent<Renderer>().materials[1].SetFloat("_Blend", BlendValue); //actually set the blend value
+                }
+                else
+                {
+                    gameObject.GetComponent<Renderer>().material.SetFloat("_Blend", BlendValue); //actually set the blend value
+                }
             }
             
 
@@ -126,7 +164,17 @@ public class ColourChange : MonoBehaviour
         {
             if (!IsWater)
             {
-                rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+                if (UseSecondaryMaterial)
+                {
+                    //rend.materials[1] = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+                    rend.materials = mats_blank;
+                    //Debug.Log("this is happening");
+                }
+                else
+                {
+                    rend.material = mat_blank; //if the player hasn't unlocked the colour the material is white. so sad.
+                }
+                
             }
             
         }
