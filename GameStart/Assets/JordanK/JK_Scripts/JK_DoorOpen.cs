@@ -9,8 +9,6 @@ public class JK_DoorOpen : MonoBehaviour
     public GameObject collisionPlane;
     public GameObject cameraPlane;
 
-    public GameObject Forest;
-    public GameObject Beach;
 
     public string DoorColour;
 
