@@ -46,10 +46,14 @@ public class AnimalRun : MonoBehaviour
             if (!IsShark)
             {
                 an_animal.SetBool("isRunning", true);
+                
                 //StartCoroutine("ReturnToIdle");
-            }
-            StartCoroutine("ReturnToIdle");
+            }            
+            StartCoroutine(ReturnToIdle());
+            
 
+            
+            //Debug.Log("deer should stop");
 
             Destroy(bx_collider);
         }
@@ -57,15 +61,19 @@ public class AnimalRun : MonoBehaviour
 
     IEnumerator ReturnToIdle()
     {
+        Debug.Log("deer should stop");
         yield return new WaitForSeconds(TimeTakenToCompleteAnimation);
         if (!IsShark)
         {
             an_animal.SetBool("isRunning", false);
-            an_animal.SetBool("isIdle", true);
+            //Debug.Log("deer should stop");
+            //an_animal.SetBool("isIdle", true);
+            
         }
         else
         {
             an_controller.SetBool("isTriggered", false);
+            
         }
     }
 }
