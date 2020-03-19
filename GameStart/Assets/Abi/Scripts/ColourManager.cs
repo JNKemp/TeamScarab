@@ -16,14 +16,35 @@ public class ColourManager : MonoBehaviour
     private float t = 0f;
     private float fl_duration = 1.5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        go_WhiteFade = GameObject.Find("WhiteFade");
+    #region Singleton
+    static ColourManager mSingleton = null;   //Create a shared (static) singleton
 
-        bl_fadewhiteDone = true;
-
+    public ColourManager singleton
+    {       //Make a Getter which will allow public R/O access (no setter)
+        get
+        {
+            return mSingleton;
+        }
     }
+
+    // Awake is called just after the object is instantiated
+    void Awake()
+    {
+        if (mSingleton == null)
+        { //Only the first time
+            mSingleton = this;  //Not the static references this object;
+            DontDestroyOnLoad(gameObject);  //Stop the GO with this script being deleted   
+
+        }
+        else if (mSingleton != this)
+        { //If there is an attempt to make another kill it
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+    // Start is called before the first frame update
+
 
 
     //You can ignore this stuff. It's for fading the screen to white. Just here for safe keeping in case we need it later. Which we probably will when we go through levels.
