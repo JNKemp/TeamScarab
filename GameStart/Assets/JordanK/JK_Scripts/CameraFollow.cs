@@ -15,6 +15,14 @@ public class CameraFollow : MonoBehaviour
     public Transform YellowB;
     public Transform BlueA;
     public Transform BlueB;
+    public Transform BlackA;
+    public Transform BlackB;
+
+    public Transform End1A;
+    public Transform End1B;
+
+    public Transform End2A;
+    public Transform End2B;
 
     // Start is called before the first frame update
     public void Update()
@@ -33,6 +41,21 @@ public class CameraFollow : MonoBehaviour
         {
             portal = BlueA;
             otherPortal = BlueB;
+        }
+        else if (PortalTexture.ActiveDoor == "Black")
+        {
+            portal = BlackA;
+            otherPortal = BlackB;
+        }
+        else if (PortalTexture.ActiveDoor == "End1")
+        {
+            portal = End1A;
+            otherPortal = End1B;
+        }
+        else if (PortalTexture.ActiveDoor == "End2")
+        {
+            portal = End2A;
+            otherPortal = End2B;
         }
     }
 
