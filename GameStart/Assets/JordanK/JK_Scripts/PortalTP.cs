@@ -28,6 +28,7 @@ public class PortalTP : MonoBehaviour
 
                 isPlayerOverlapping = false;
                 player.enabled = true;
+                JK_DoorOpen.isDoorOpen = false;
             }
         }
 
