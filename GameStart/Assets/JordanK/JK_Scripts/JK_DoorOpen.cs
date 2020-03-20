@@ -39,8 +39,6 @@ public class JK_DoorOpen : MonoBehaviour
     }
     private GameObject go_colourManager;
 
-    [SerializeField]
-    private GameObject UnlockableDoor;
 
     // Start is called before the first frame update
     void Start()
