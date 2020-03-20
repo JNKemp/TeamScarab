@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class Telescope : MonoBehaviour
 {
@@ -29,5 +30,9 @@ public class Telescope : MonoBehaviour
             TeleCam.enabled = false;
             PlayerCam.enabled = true;
         }
+    }
+    void OnEnable()
+    {
+        go_colourmanager = GameObject.Find("Colour Manager");
     }
 }

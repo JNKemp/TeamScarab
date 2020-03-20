@@ -9,7 +9,11 @@ public class ChangeScene : MonoBehaviour
     private GameObject intro;
     public void LoadScene(string level)
     {
-        intro.SetActive(true);
+        JK_DoorOpen.isDoorOpen = false;
+        if(level == "MainLevel")
+        {
+            intro.SetActive(true);
+        }
         SceneManager.LoadScene(level);
     }
     public void ExitGame()

@@ -9,6 +9,7 @@ public class JK_Portal_Walkthrough : MonoBehaviour
     public GameObject CameraPane;
     public GameObject CollisionPlane;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
