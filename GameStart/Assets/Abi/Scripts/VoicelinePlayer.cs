@@ -12,7 +12,7 @@ public class VoicelinePlayer : MonoBehaviour
 
     private int int_voicelineNumber;
 
-    private GameObject SubtitlePanel;
+    public GameObject SubtitlePanel;
     public string[] Subtitles;
     private TextMeshProUGUI currentSubtitles;
     // Start is called before the first frame update
@@ -20,7 +20,6 @@ public class VoicelinePlayer : MonoBehaviour
     {
         as_voiceline = GetComponent<AudioSource>();
         int_voicelineNumber = 0;
-        SubtitlePanel = GameObject.Find("SubtitlePanel");
         SubtitlePanel.SetActive(false);
         currentSubtitles = SubtitlePanel.GetComponentInChildren<TextMeshProUGUI>();
     }
