@@ -52,13 +52,6 @@ public class VoicelinePlayer : MonoBehaviour
                 }
             }
         }
-        if(PortalTexture.ActiveDoor == "Yellow")
-        {
-            as_voiceline.volume = 0;
-        }
-        else
-        {
-            as_voiceline.volume = 1;
-        }
+
     }    
 }

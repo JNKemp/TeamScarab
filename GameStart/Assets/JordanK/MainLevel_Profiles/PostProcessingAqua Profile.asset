@@ -1426,7 +1426,7 @@ MonoBehaviour:
     value: 0.72
   color:
     overrideState: 1
-    value: {r: 0.28635633, g: 0.30582148, b: 0.3679245, a: 1}
+    value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
     overrideState: 1
     value: 1
